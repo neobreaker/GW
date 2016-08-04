@@ -1,0 +1,5 @@
+E:\github\GW\GW\obj\Debug\ResolveAssemblyReference.cache
+E:\github\GW\GW\bin\GW.dll
+E:\github\GW\GW\bin\GW.pdb
+E:\github\GW\GW\obj\Debug\GW.dll
+E:\github\GW\GW\obj\Debug\GW.pdb
