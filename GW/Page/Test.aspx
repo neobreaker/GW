@@ -5,13 +5,15 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <script src="/3rdpart/highcharts/highcharts.js"></script>
+    <script src="/Scripts/jquery-1.4.1.js"></script>
     <title></title>
 <style type =  "text/css">
     
 div.layout_center
 {
     text-align:center;
-    margin-top="50px";
+    margin: 100px 0px 0px 0px;
 }
 
 </style>
@@ -23,8 +25,8 @@ div.layout_center
         </asp:ScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-            <div class=layout_center>
-                <div>
+            <div>
+                <div class=layout_center>
                     <span>
                         <asp:TextBox ID="TextBoxSearch" runat="server" Width="200px" Height="30px"></asp:TextBox>
                     </span>
@@ -33,7 +35,7 @@ div.layout_center
                         onclick="ButtonSearch_Click" Height="30px" Width="70px" />
                     </span>
                 </div>
-                <div>
+                <div class=layout_center>
                     <asp:GridView ID="GridViewOutputItem" align="center" runat="server" CellPadding="4" 
                         ForeColor="#333333" GridLines="None" AutoGenerateColumns="False">
                         <AlternatingRowStyle BackColor="White" />
@@ -71,7 +73,7 @@ div.layout_center
                         <SortedDescendingHeaderStyle BackColor="#4870BE" />
                     </asp:GridView>
                 </div>
-                <div>
+                <div class=layout_center>
                     <asp:GridView 
                         ID="GridViewSearch" align="center" runat="server" AutoGenerateColumns="False" 
                         CellPadding="4" ForeColor="#333333" GridLines="None" Width="759px">

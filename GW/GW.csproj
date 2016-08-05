@@ -38,6 +38,8 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -56,6 +58,7 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
+    <Content Include="Page\HighChartsTest.aspx" />
     <Content Include="Page\Test.aspx" />
     <Content Include="Styles\Site.css" />
     <Content Include="Default.aspx" />
@@ -63,6 +66,7 @@
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="WCF\ServiceChart.svc" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -125,6 +129,13 @@
     <Compile Include="Model\Formula.cs" />
     <Compile Include="Model\Item.cs" />
     <Compile Include="Model\ItemInSale.cs" />
+    <Compile Include="Page\HighChartsTest.aspx.cs">
+      <DependentUpon>HighChartsTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\HighChartsTest.aspx.designer.cs">
+      <DependentUpon>HighChartsTest.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Page\Test.aspx.cs">
       <DependentUpon>Test.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -139,6 +150,10 @@
     </Compile>
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="WCF\IServiceChart.cs" />
+    <Compile Include="WCF\ServiceChart.svc.cs">
+      <DependentUpon>ServiceChart.svc</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

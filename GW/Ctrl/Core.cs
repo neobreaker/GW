@@ -197,7 +197,8 @@ namespace GW.Ctrl
                     dr["avgsaleprice"] = iteminsale.avgprice;
                     dr["avgprofit"] = profit;
                     dr["avgprofitrate"] = profit / item.avgprice;
-                    dr["manufacturingcycle"] = m_manufacturingcycle.ToString();
+                    TimeSpan ts = new TimeSpan(0, m_manufacturingcycle, 0);
+                    dr["manufacturingcycle"] = String.Format("{0}天", ts.Days);
                     m_outputdt.Rows.Add(dr);
                 }
             }
