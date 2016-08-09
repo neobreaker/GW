@@ -14,6 +14,11 @@
     <div id="container" style="width: 550px; height: 400px; margin: 0 auto" runat="server"></div>
 <script language="JavaScript">
     $(document).ready(function () {
+
+        var credits = {
+            enabled: false
+        };
+
         var title = {
             text: '月平均气温'
         };
@@ -70,16 +75,19 @@
    ];
 
         var json = {};
-
+        json.credits = credits;
         json.title = title;
         json.subtitle = subtitle;
         json.xAxis = xAxis;
         json.yAxis = yAxis;
         json.tooltip = tooltip;
         json.legend = legend;
-        json.series = series;
 
-        $('#container').highcharts(json);
+        $.get("/WCF/ServiceChart.svc/GetChart", function (data, status) {
+            json.series = eval("(" + data + ")");
+            $('#container').highcharts(json);
+        });
+        
     });
     </script>
     </div>

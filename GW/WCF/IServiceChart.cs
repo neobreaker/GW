@@ -4,6 +4,8 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using System.ServiceModel.Web;
+
 
 namespace GW.WCF
 {
@@ -14,8 +16,8 @@ namespace GW.WCF
         [OperationContract]
         void DoWork();
 
-        [WebGet(UriTemplate="/GetChart")]
+        [WebGet(UriTemplate="/GetChart", ResponseFormat=WebMessageFormat.Json)]
         [OperationContract]
-        void GetChart();
+        string GetChart();
     }
 }
