@@ -5,12 +5,24 @@ using System.Web;
 using GW.Model;
 using System.Data;
 using GW;
+using System.Text;
 
 namespace GW.Ctrl
 {
+    public struct Chart
+    {
+        public string name;
+        public float value;
+        public float percent;
+    };
+
     public class Core
     {
         private static int m_manufacturingcycle = 0;
+        public static DataTable m_formuladt = null;
+        public static DataTable m_outputdt = null;
+        public static List<Chart> m_charts = null;
+
         public static int GetCostByName(string name, string FWQ)
         {
             int cnt = 0;
@@ -109,7 +121,7 @@ namespace GW.Ctrl
                 }
                 else if (item.formula == Constant.FORMULAAH)
                 {
-
+                    Chart crt = new Chart();
                     DataRow dr = m_formuladt.NewRow();
                     dr["name"] = item.name;
                     dr["avgprice"] = item.avgprice;
@@ -120,6 +132,10 @@ namespace GW.Ctrl
                     dr["num"] = num;
                     dr["total"] = item.avgprice * num;
                     m_formuladt.Rows.Add(dr);
+
+                    crt.name = item.name.Trim();
+                    crt.value = item.avgprice * num;
+                    m_charts.Add(crt);
                 }
             }
             catch (Exception ex)
@@ -128,13 +144,14 @@ namespace GW.Ctrl
             }
         }
 
-        public static DataTable m_formuladt = null;
-        public static DataTable m_outputdt = null;
-
         public static void GetAllMaterialByOutput(string output, string FWQ, int num = 1)
         {
             try
             {
+                if (m_charts == null)
+                {
+                    m_charts = new List<Chart>();
+                }
                 if (m_formuladt == null)
                 {
                     m_formuladt = new DataTable("TABLE_ITEMINPUT");
@@ -165,6 +182,7 @@ namespace GW.Ctrl
                 m_manufacturingcycle = 0;
                 m_formuladt.Clear();
                 m_outputdt.Clear();
+                m_charts.Clear();
 
                 GetAllMaterial(output, FWQ, num);
                 CalcOutput(output, FWQ);
@@ -207,6 +225,37 @@ namespace GW.Ctrl
 
             }
             
+        }
+
+        public static string GetChartPieData()
+        {
+            StringBuilder sb = new StringBuilder();
+            float total = 0;
+            try
+            {
+                foreach (Chart crt in m_charts)
+                {
+                    total += crt.value;
+                }
+                sb.Append("[{type: 'pie',name: 'Browser share',data: [");
+                foreach (Chart crt in m_charts)
+                {
+                    sb.Append("['");
+                    sb.Append(crt.name);
+                    sb.Append("',");
+                    sb.Append((crt.value/total*100).ToString());
+                    sb.Append("],");
+                }
+                sb.Remove(sb.Length - 1, 1);
+                sb.Append("]}]");
+            }
+            catch (Exception ex)
+            {
+                sb.Clear();
+                sb.Append("err");
+            }
+
+            return sb.ToString();
         }
 
     }

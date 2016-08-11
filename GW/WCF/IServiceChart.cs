@@ -19,5 +19,9 @@ namespace GW.WCF
         [WebGet(UriTemplate="/GetChart", ResponseFormat=WebMessageFormat.Json)]
         [OperationContract]
         string GetChart();
+
+        [WebGet(UriTemplate = "/GetPie", ResponseFormat = WebMessageFormat.Json)]
+        [OperationContract]
+        string GetPie();
     }
 }

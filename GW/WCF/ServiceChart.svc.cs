@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using GW.Ctrl;
 
 namespace GW.WCF
 {
@@ -23,6 +24,13 @@ namespace GW.WCF
             sb.Append("{name: 'Berlin',data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6,17.9, 14.3, 9.0, 3.9, 1.0]},");
             sb.Append("{name: 'London',data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0,16.6, 14.2, 10.3, 6.6, 4.8]}]");
             return sb.ToString();
+        }
+
+        public string GetPie()
+        {
+            string ret = Core.GetChartPieData();
+            return ret;
+            //return "[{type: 'pie',name: 'Browser share',data: [['幽冥铁矿石',45.0],['延极锭',55.0]]}]";
         }
     }
 }
