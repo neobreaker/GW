@@ -10,7 +10,10 @@ namespace GW.Model
     [Table(Name = "ItemInSale")]
     public class DBItemInSale
     {
-        [Column(CanBeNull = true, DbType = "nchar(10)")]
+        [Column(IsPrimaryKey = true, CanBeNull = false, DbType = "int", IsDbGenerated = true, AutoSync = AutoSync.OnInsert)]
+        public int ID { get; set; }
+
+        [Column(CanBeNull = false, DbType = "nchar(10)")]
         public string name { get; set; }
 
         [Column(CanBeNull = true, DbType = "float")]
@@ -28,7 +31,7 @@ namespace GW.Model
         [Column(CanBeNull = true, DbType = "float")]
         public float recentprice { get; set; }
 
-        [Column(CanBeNull = true, DbType = "nchar(30)")]
+        [Column(CanBeNull = false, DbType = "nchar(30)")]
         public string FWQ { get; set; }
 
         public static List<DBItemInSale> GetItemInSaleByName(string name, string FWQ)
@@ -83,6 +86,26 @@ namespace GW.Model
             }
 
             return avg;
+        }
+
+        public static void Add(string name, string FWQ)
+        {
+            using (DBGoblinWOW dc = new DBGoblinWOW(Constant.CONNSTR))
+            {
+                try
+                {
+                    DBItemInSale item = new DBItemInSale();
+                    item.name = name;
+                    item.FWQ = FWQ;
+                    dc.ItemInSale.InsertOnSubmit(item);
+                    dc.SubmitChanges();
+                }
+                catch (Exception ex)
+                {
+                    throw (ex);
+                }
+            }
+         
         }
 
     }

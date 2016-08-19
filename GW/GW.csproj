@@ -59,6 +59,7 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
+    <Content Include="Page\AddItem.aspx" />
     <Content Include="Page\HighChartsTest.aspx" />
     <Content Include="Page\jstest.aspx" />
     <Content Include="Page\Test.aspx" />
@@ -131,6 +132,13 @@
     <Compile Include="Model\Formula.cs" />
     <Compile Include="Model\Item.cs" />
     <Compile Include="Model\ItemInSale.cs" />
+    <Compile Include="Page\AddItem.aspx.cs">
+      <DependentUpon>AddItem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\AddItem.aspx.designer.cs">
+      <DependentUpon>AddItem.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Page\HighChartsTest.aspx.cs">
       <DependentUpon>HighChartsTest.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

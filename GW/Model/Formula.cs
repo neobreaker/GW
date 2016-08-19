@@ -12,28 +12,28 @@ namespace GW.Model
     [Table(Name = "formula")]
     public class DBFormula
     {
-        [Column(CanBeNull = true, DbType = "nchar(50)")]
-        public string ID { get; set; }
+        [Column(IsPrimaryKey = true, CanBeNull = false, DbType = "int", IsDbGenerated = true, AutoSync = AutoSync.OnInsert)]
+        public int ID { get; set; }
 
-        [Column(CanBeNull = true, DbType = "nchar(10)")]
+        [Column(CanBeNull = false, DbType = "nchar(10)")]
         public string output { get; set; }
 
-        [Column(CanBeNull = true, DbType = "nchar(10)")]
+        [Column(CanBeNull = false, DbType = "nchar(10)")]
         public string input { get; set; }
 
-        [Column(CanBeNull = true, DbType = "int")]
+        [Column(CanBeNull = false, DbType = "int")]
         public int outputnum { get; set; }
 
-        [Column(CanBeNull = true, DbType = "int")]
+        [Column(CanBeNull = false, DbType = "int")]
         public int inputnum { get; set; }
 
-        [Column(CanBeNull = true, DbType = "int")]
+        [Column(CanBeNull = false, DbType = "int")]
         public int type { get; set; }
 
-        [Column(CanBeNull = true, DbType = "int")]
+        [Column(CanBeNull = false, DbType = "int")]
         public int CDminite { get; set; }
 
-        [Column(CanBeNull = true, DbType = "int")]
+        [Column(CanBeNull = false, DbType = "int")]
         public int isvalid { get; set; }
 
         public static List<DBFormula> GetFormulaByOutput(string output)

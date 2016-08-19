@@ -258,5 +258,31 @@ namespace GW.Ctrl
             return sb.ToString();
         }
 
+        public static void AddItem(String name, string FWQ)
+        {
+            try
+            {
+                DBItem.Add(name, FWQ);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            
+        }
+
+        public static void AddItemInSale(String name, string FWQ)
+        {
+            try
+            {
+                DBItemInSale.Add(name, FWQ);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
     }
 }

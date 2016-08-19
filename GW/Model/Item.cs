@@ -10,10 +10,10 @@ namespace GW.Model
     [Table(Name = "Item")]
     public class DBItem
     {
-        [Column(IsPrimaryKey = true, CanBeNull = false, DbType = "nchar(10)", IsDbGenerated = true, AutoSync = AutoSync.OnInsert)]
-        public string ID { get; set; }
+        [Column(IsPrimaryKey = true, CanBeNull = false, DbType = "int", IsDbGenerated = true, AutoSync = AutoSync.OnInsert)]
+        public int ID { get; set; }
 
-        [Column(CanBeNull = true, DbType = "nchar(10)", UpdateCheck = UpdateCheck.Never)]
+        [Column(CanBeNull = false, DbType = "nchar(10)", UpdateCheck = UpdateCheck.Never)]
         public string name { get; set; }
 
         [Column(CanBeNull = true, DbType = "float", UpdateCheck = UpdateCheck.Never)]
@@ -31,7 +31,7 @@ namespace GW.Model
         [Column(CanBeNull = true, DbType = "datetime", UpdateCheck = UpdateCheck.Never)]
         public DateTime updatetime { get; set; }
 
-        [Column(CanBeNull = true, DbType = "nchar(30)", UpdateCheck = UpdateCheck.Never)]
+        [Column(CanBeNull = false, DbType = "nchar(30)", UpdateCheck = UpdateCheck.Never)]
         public string FWQ { get; set; }
 
         [Column(CanBeNull = true, DbType = "int", UpdateCheck = UpdateCheck.Never)]
@@ -123,6 +123,34 @@ namespace GW.Model
             }
 
             return avg;
+        }
+
+        public static void Add(string name, string FWQ)
+        {
+            using (DBGoblinWOW dc = new DBGoblinWOW(Constant.CONNSTR))
+            {
+                try
+                {
+                    var rst = from data in dc.Item
+                              where data.name == name && data.FWQ == FWQ
+                              select data;
+                    if (rst.Count() > 0)
+                    {
+                        Exception ex = new Exception("物品已存在");
+                        throw (ex);
+                    }
+                    DBItem item = new DBItem();
+                    item.name = name;
+                    item.FWQ = FWQ;
+                    item.updatetime = System.DateTime.Now;
+                    dc.Item.InsertOnSubmit(item);
+                    dc.SubmitChanges();
+                }
+                catch (Exception ex)
+                {
+                    throw(ex);
+                }
+            }
         }
         
     }
