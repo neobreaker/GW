@@ -119,7 +119,7 @@ namespace GW.Ctrl
                         GetAllMaterial(formula.input, FWQ, formula.inputnum * num);
                     }
                 }
-                else if (item.formula == Constant.FORMULAAH)
+                else if (item.formula == Constant.FORMULAAH || item.formula == Constant.FORMULANPC)
                 {
                     Chart crt = new Chart();
                     DataRow dr = m_formuladt.NewRow();

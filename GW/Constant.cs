@@ -12,6 +12,7 @@ namespace GW
 
         public static int MAXFORMULATYPE = 5;               //made follow formula
         public static int FORMULAAH = MAXFORMULATYPE;       //buy from AH
-        public static int FORMULAUNKNOWN = FORMULAAH + 1;   //unknown
+        public static int FORMULANPC = 6;                   //buy from NPC
+        public static int FORMULAUNKNOWN = 7;               //unknown
     }
 }

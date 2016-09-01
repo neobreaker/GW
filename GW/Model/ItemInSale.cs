@@ -16,6 +16,9 @@ namespace GW.Model
         [Column(CanBeNull = false, DbType = "nchar(10)")]
         public string name { get; set; }
 
+        [Column(CanBeNull = false, DbType = "int")]
+        public int item_id { get; set; }
+
         [Column(CanBeNull = true, DbType = "float")]
         public float lowprice { get; set; }
 
